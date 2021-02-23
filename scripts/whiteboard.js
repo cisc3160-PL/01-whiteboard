@@ -4,25 +4,66 @@
 {
     let canvas = document.getElementById('whiteboard');
     let ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let current =
+    {
+        color: 'black'
+    };
 
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
     canvas.addEventListener('mouseout', onMouseUp, false);
     canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
 
+    // Touch support for mobile
+    canvas.addEventListener('touchstart', onMouseDown, false);
+    canvas.addEventListener('touchend', onMouseUp, false);
+    canvas.addEventListener('touchcancel', onMouseUp, false);
+    canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
+
+    function drawLine(fromX, fromY, toX, toY, color)
+    {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+        ctx.stroke();
+        ctx.closePath();
+    }
+
     function onMouseDown(event)
     {
-        console.log('mouse down');
+        console.log(event);
+        isDrawing = true;
+        current.x = event.clientX || event.touches[0].clientX;
+        current.y = event.clientY || event.touches[0].clientY;
     }
 
     function onMouseUp(event)
     {
-        console.log('mouse up');
+        if(!isDrawing) return;
+        isDrawing = false;
+        drawLine(
+            current.x, current.y,
+            event.clientX || event.touches[0].clientX,
+            event.clientY || event.touches[0].clientY,
+            current.color
+        );
     }
 
     function onMouseMove(event)
     {
-        console.log('mouse move');
+        if(!isDrawing) return;
+        drawLine(
+            current.x, current.y,
+            event.clientX || event.touches[0].clientX,
+            event.clientY || event.touches[0].clientY,
+            current.color
+        );
+        
+        current.x = event.clientX || event.touches[0].clientX;
+        current.y = event.clientY || event.touches[0].clientY;
     }
 
     // Throttle number of events executed per second

@@ -10,6 +10,9 @@
         color: 'black'
     };
 
+    window.addEventListener('resize', onResize, false);
+    onResize();
+
     canvas.addEventListener('mousedown', onMouseDown, false);
     canvas.addEventListener('mouseup', onMouseUp, false);
     canvas.addEventListener('mouseout', onMouseUp, false);
@@ -81,5 +84,11 @@
                 cb.apply(null, arguments);
             }
         };
+    }
+
+    function onResize()
+    {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
 })();

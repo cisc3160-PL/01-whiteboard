@@ -4,6 +4,7 @@
 {
     let canvas = document.getElementById('whiteboard');
     let ctx = canvas.getContext('2d');
+    let colors = document.getElementsByClassName('color');
     let isDrawing = false;
     let current =
     {
@@ -23,6 +24,16 @@
     canvas.addEventListener('touchend', onMouseUp, false);
     canvas.addEventListener('touchcancel', onMouseUp, false);
     canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
+
+    for(let i = 0; i < colors.length; i++)
+    {
+        colors[i].addEventListener('click', onColorUpdate, false);
+    }
+
+    function onColorUpdate(event)
+    {
+        current.color = event.target.className.split(' ')[1];
+    }
 
     function drawLine(fromX, fromY, toX, toY, color)
     {

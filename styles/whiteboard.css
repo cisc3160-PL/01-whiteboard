@@ -1,0 +1,33 @@
+#whiteboard
+{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: 1px solid black;
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAABGElEQVQoU42QMUuFYBSGvxcX+YambtEYDYr+hG7gKDnfluuouFzwNhT9hWpIhwZ11qFmw1Ho9hMUhctdi25TYLrIF18YhFNnOIdzeA7nvC/IEIyxZRiGi7ZtDwghjFL6atv2PQCPI+Cpqqob13Uvuq4jkiT9rNZ1TURRJL7v38qyfAnG2EzX9QdBED7TND3lzHBEMgzjqe/7nSzLzhCG4SaO48M8z08ArH5f4ZUxNtU07dk0zQ1832+KoqBBEOwB2I7AieM476qqfsHzvKYsSw5OAHyMwF3HcbaKojQIgmCdJMlRnudTAC8j8FjTtNV8Pl9zMUtd1+8GMcZITDqIOf+/PX8Mn0VRdN227T6fUUrfLMu6AvDI+2/5VpBtGrIG5gAAAABJRU5ErkJggg==") 5 5, auto;
+}
+
+#colors
+{
+    position: fixed;
+}
+
+.color
+{
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+}
+
+.color.black { background-color: black; }
+.color.red { background-color: red; }
+.color.orange { background-color: orange; }
+.color.yellow { background-color: yellow; }
+.color.green { background-color: green; }
+.color.blue { background-color: blue; }
+.color.purple { background-color: purple; }
